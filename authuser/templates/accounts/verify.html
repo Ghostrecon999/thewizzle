@@ -1,0 +1,73 @@
+{% extends "accounts/base.html" %}
+
+{% block title %} Verify Email {% endblock %}
+
+{% block content %}
+    
+    <h2>Verify Your Email</h2>
+    <span><i></i></span>
+    <p>Please enter the one time code sent to your email address</p>
+    <form action="" method="post">
+        <label for="{{form.verify.id_for_label}}" >Enter code</label>
+        {{form.verify}}
+        {% for error in form.verify.errors %}
+        <p class="error">{{error}}</p>
+        {% endfor %}
+        {%csrf_token%}
+        
+        <input type="submit" value="verify" >
+    </form>
+    <p>Didn’t receive any code?<span>Resend</span></p>
+{% endblock %}
+
+{% block style %}
+    *{
+        font-family:"Nunito",sans-serif;
+        box-sizing:border-box;
+        margin:0;
+        padding:5px;
+        line-height:1rem
+    }
+    form{
+        padding:20px;
+        
+    }
+  input{
+      position:relative;
+  }
+  label{
+      position:absolute;
+      z-index:1;
+     left:35px;
+      
+      margin:0px auto;
+      background-color:white;
+      font-size:11.9px
+  }
+   input{
+        width:100%;
+       margin:10px auto;
+        height:56px;
+        text-align:center;
+        border-radius:10px;
+       border:1px solid whitesmoke;
+       
+        
+    }
+    input[type="submit"]{
+        color:white;
+        background-color:black;
+    }
+    p,h2{
+        text-align:center
+    }
+    span{
+        font-weight:bold;
+    }
+    body{
+        margin:40px auto
+    }
+    input[type="text"]:focus{
+        outline:1px solid black;
+    }
+{% endblock %}

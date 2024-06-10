@@ -1,0 +1,178 @@
+{% extends "accounts/base.html" %}
+{% block title %} Sign up {% endblock %}
+{% block content %}
+    <main>
+        <h1 style="text-align:center">ZZ</h1><hr>
+        <h2>Create An Account</h2>
+        <div>
+            <form action="" method="post" class="form">
+                <i class="fa-solid fa-envelope"></i>
+                {{form.email}}
+                {% for error in form.email.errors %}
+                <p class="error">{{error}}</p>
+                {% endfor %}
+                <i class="fa-solid fa-lock"></i>
+                <span class="password-toggle-icon">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </span>
+                {{form.password1}}
+                {% for error in form.password1.errors %}
+                <p class="error">{{error}}</p>
+                {% endfor %}
+                <i class="fa-solid fa-lock"></i>
+                <span class="password-toggle-icon">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </span>
+                {{form.password2}}
+                {% for error in form.password2.errors %}
+                <p class="error">{{error}}</p>
+                {% endfor %}
+                {% csrf_token %}
+                <input type="submit" value="Create Account">
+            </form>
+            <section>
+                    <hr>
+                    <p>OR</p>
+                    <hr>
+            </section>
+                    <p style="margin-top:-10px">
+                        <a href="//faga" style="display:flex;justify-content:center;align-items:center;background-color:whitesmoke;height:40px;gap:0.2em;color:black;border-radius:5px;">
+                            <img src="google.svg" height="20">
+                            <b style="font-weight: 698">
+                                Continue with Google
+                            </b>
+                        </a>
+                    </p>
+            <footer>
+            <p>Already have an account?
+                <a href="{% url "authuser:login" %}">
+                    <span class="bold">Login</span>
+                    
+                </a>
+            </p>
+            </footer>
+        </div>
+    </main>
+{% endblock %}
+
+{% block style %}
+*{
+    box-sizing:border-box;
+    padding:0;
+    font-family: "Nunito", sans-serif;
+    font-weight: 550;
+    font-style:normal;
+          
+    
+}
+label{
+    margin-bottom:11px;
+}
+.bold{
+    font-weight: 758;
+}
+input{
+    width:100%;
+    height:50px;
+    padding:25px;
+    margin-bottom:20px;
+    border-radius:10px;
+    border:2px solid whitesmoke;
+    position:relative;
+}
+
+input:hover{
+    outline:2px solid white;
+    border:2px solid white
+}
+
+input[type="submit"]{
+    background-color:black;
+    color:white;
+    outline:1px solid black;
+    border:1px solid black;
+    padding-bottom:40px;
+    padding-top:20px
+}
+
+h2{
+    font-weight: 850;
+}
+
+
+h1{
+   padding: 40px;
+   
+   
+
+}
+.names{
+    display:flex;
+    align-items:center;
+    gap:0.1em 
+}
+
+section{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin-top:-23px;
+}
+
+a{
+    text-decoration:none;
+    color:black
+}
+a::visited{
+    color:black
+}
+hr{
+    background-color:black;
+    border:none;
+    height:1px;
+    margin:0;
+    padding:0;
+    
+   
+}
+i{
+    position:absolute;
+    z-index:1;
+    margin:18px 8px;
+    color:gray;
+    
+}
+span > i{
+    right:10px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh
+}
+footer>p{
+    text-align: center;
+}
+.error {
+    color : lightgray;
+    font-size:small;
+}    
+{% endblock %}
+
+{% block script %}
+const passwordField = document.getElementById("password");
+const togglePassword = document.querySelector(".password-toggle-icon i");
+
+togglePassword.addEventListener("click", function () {
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+    togglePassword.classList.remove("fa-eye-slash");
+    togglePassword.classList.add("fa-eye");
+  } else {
+    passwordField.type = "password";
+    togglePassword.classList.remove("fa-eye");
+    togglePassword.classList.add("fa-eye-slash");
+  }
+});
+{% endblock %}
